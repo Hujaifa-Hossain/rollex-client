@@ -1,46 +1,49 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useForm } from "react-hook-form";
+import useFirebase from "../../Hooks/useFirebase";
 
 const Review = () => {
-  const {
-    register,
-    handleSubmit,
-    reset
-  } = useForm();
+  const { user } = useFirebase();
+  const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
-    fetch("http://localhost:5050/review", {
+    fetch("https://rollex-watch.herokuapp.com/review", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
     })
       .then((res) => res.json())
       .then((result) => console.log(result));
+    console.log(data);
     reset();
   };
   return (
     <div className="container my-5">
       <form onSubmit={handleSubmit(onSubmit)}>
+
+      <input
+          className="p-2 my-1 w-100"
+          placeholder="Enter your name"
+          defaultValue={user.displayName}
+          {...register("user")}
+        />
+        
         <input
-          {...register("product", { required: true })}
-          placeholder="Product name"
           className="w-100 p-2 my-1"
+          placeholder="Enter your email"
+          defaultValue={user?.email}
+          {...register("email")}
         />
 
         <input
-          {...register("price", { required: true })}
-          placeholder="Product price"
+          placeholder="Rating between 1 to 5"
+          type="number"
+          {...register("stars", { min: 0, max: 5, required: true })}
           className="w-100 p-2 my-1"
         />
 
-        <input
-          {...register("description", { required: true })}
-          placeholder="Product description"
-          className="w-100 p-2 my-1"
-        />
-
-        <input
-          {...register("img", { required: true })}
-          placeholder="Product image"
+        <textarea
+          {...register("review", { required: true })}
+          placeholder="What's in your mind?"
           className="w-100 p-2 my-1"
         />
 

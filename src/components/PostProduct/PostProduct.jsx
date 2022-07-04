@@ -2,13 +2,9 @@ import React from "react";
 import { useForm } from "react-hook-form";
 
 const PostProduct = () => {
-  const {
-    register,
-    handleSubmit,
-    reset
-  } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
-    fetch("http://localhost:5050/postproduct", {
+    fetch("https://rollex-watch.herokuapp.com/postproduct", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
@@ -33,17 +29,16 @@ const PostProduct = () => {
         />
 
         <input
-          {...register("description", { required: true })}
-          placeholder="Product description"
-          className="w-100 p-2 my-1"
-        />
-
-        <input
           {...register("img", { required: true })}
           placeholder="Product image"
           className="w-100 p-2 my-1"
         />
 
+        <textarea
+          {...register("description", { required: true })}
+          placeholder="Product description"
+          className="w-100 p-2 my-1"
+        />
         <input
           className="btn btn-danger d-block px-5 my-1 m-auto"
           value="Post Now!"

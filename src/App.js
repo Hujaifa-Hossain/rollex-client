@@ -7,6 +7,7 @@ import Footer from "./components/Footer/Footer";
 import ProductDetails from "./components/ProductDetails/ProductDetails";
 import Products from "./components/Products/Products";
 import Review from "./components/Review/Review";
+import Login from "./components/Login/Login";
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="watches" element={<Products />} />
         <Route path="review" element={<Review />} />
         <Route path="products/:_id" element={<ProductDetails/>} />
+        <Route path="login" element={<Login/>}/>
       </Routes>
       <Footer/>
     </div>

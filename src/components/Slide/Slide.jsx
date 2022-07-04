@@ -5,12 +5,11 @@ import Product from "../Product/Product";
 const Slide = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5050/products")
+    fetch("https://rollex-watch.herokuapp.com/products")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
   const settings = {
-    // dots: true,
     infinite: true,
     slidesToShow: 3,
     slidesToScroll: 1,

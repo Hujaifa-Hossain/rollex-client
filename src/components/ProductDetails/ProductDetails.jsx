@@ -5,7 +5,7 @@ const ProductDetails = () => {
   const { _id } = useParams();
   const [details, setDetails] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5050/products/${_id}`)
+    fetch(`https://rollex-watch.herokuapp.com/products/${_id}`)
       .then((res) => res.json())
       .then((data) => setDetails(data));
   }, [_id]);
